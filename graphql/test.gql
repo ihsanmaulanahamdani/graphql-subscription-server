@@ -1,0 +1,30 @@
+scalar DateTime
+scalar ObjectId
+
+type User {
+  _id: ObjectId
+  name: String
+  phoneNumber: String
+  password: String
+}
+
+type Chat {
+  _id: ObjectId
+  User: User
+  content: String
+  createdAt: DateTime
+}
+
+type Query {
+  chats: [Chat]
+}
+
+type Mutation {
+  createMessage(userId: String, content: String): Chat
+  signUp(name: String, phoneNumber: String, password: String): User
+  logIn(phoneNumber: String, password: String): User
+}
+
+type Subscription {
+  newChat: Chat
+}
